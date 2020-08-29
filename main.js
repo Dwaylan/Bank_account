@@ -1,3 +1,5 @@
+
+
 let mapping = {
     'Plane': 'Pilot',
     'boat': 'capitan',
@@ -58,6 +60,15 @@ class Employee {
         this.Vehicle = theVehichle
         theVehichle.crew.push(this)
     }
+}
+
+if(typeof describe == 'function'){
+    const assert = require('assert')
+
+    it('should correctly create vehicles', function(){
+        let titanic = new Vehicle ('doomed', 'boat', '1812', 2220)
+        assert.equal[frank.name, 'Frank Underwood']
+    })
 }
 
 let titanic = new Vehicle('doomed','boat', '1812', 2220)

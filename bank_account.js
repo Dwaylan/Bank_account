@@ -66,14 +66,17 @@ return sum;
 // and add it to the transactions array.
 
 deposit(amt){
+    if (amt > 0){
 // The deposit method is using "amt" as the single parameter
-// NOTE: You should not be able to deposit a negative amount
+// NOTE: You should not be able to deposit a negative amount therefore we need to
+// add an if statement that only allows deposits to happen IF the amt is greater than
+// zero
 
-    let deposit  = new Transaction (amt, 'me');
+    let deposit  = new Transaction (amt, 'Deposit');
 // we created a new variable called "deposit" that... you guessed it creates
 // a new transaction to add to our transactions array. It takes in two parameters
 // the amount to be deposited and by whom
-
+    }
     this.transactions.push(deposit)
 // To add our new transactions to the working transactions array we use the push method
 // *** Comprehension check: The push() method adds new items to the end of an array, and returns the new length.***
@@ -84,6 +87,12 @@ deposit(amt){
 //  and adds the transaction to the transaction array.
 
 charge(payee, amt){
+    if (this.balance()< amt){
+        return;
+//  This is overdraft protection. It basically says that if the charge issued
+//  to the account is greater than the account balance then do not allow the 
+//  charge to process. 
+    }
     let charge = new Transaction (-amt, payee)
 //  charge is using the same structure of deposit however its taking on the negative
 //  of the amount value and a payee.
@@ -97,6 +106,7 @@ balance(){
 // We have set the beginning of account 1's balance to zero
     for (i=0; i <this.transactions.length; i++)
     let currentTransaction = this.transactions[i];
+//  this.transactions[i] grabs one transaction at a time
     currentBalance += currentTransaction.amt
 // We are now looping through the account transactions array and summing it up
 // to the current balance
@@ -172,3 +182,13 @@ acct1.deposit(100)
 // }.array.reduce(function(prev,amt){
 //     return prev + amt
 // }, 0};
+
+// *** Test to see if our bank account reaches requirements ***
+
+// Test 1 should let you deposit a positive amount
+describe('Test 1', function(){
+    it('should let you deposit a positive', function(){
+        let acct1 = new bankAccount (83078155, 'Dwaylan')
+        acct1.deposit(100)
+    })
+} ) 

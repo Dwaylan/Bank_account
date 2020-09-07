@@ -1,4 +1,6 @@
 'use strict'
+const assert = require('assert');
+
 // NOTE: You should not be able to charge an amount that would make your balance dip below 0
 // Transaction class - This class represents a single transaction in a bank account.
 // BankAccount class - This class represents a bank account.
@@ -190,5 +192,6 @@ describe('Test 1', function(){
     it('should let you deposit a positive', function(){
         let acct1 = new bankAccount (83078155, 'Dwaylan')
         acct1.deposit(100)
+        assert.equals(100, acct1.balance())
     })
 } ) 

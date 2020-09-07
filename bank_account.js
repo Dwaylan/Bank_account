@@ -192,6 +192,13 @@ describe('Test 1', function(){
     it('should let you deposit a positive', function(){
         let acct1 = new bankAccount (83078155, 'Dwaylan')
         acct1.deposit(100)
-        assert.equals(100, acct1.balance())
+        assert.equal(100, acct1.balance())
+    })
+//  Test 2 should NOT let you overdraft the account
+    it('should NOT let you overdraft', function(){
+        let acct1 = new bankAccount (83078155, 'Dwaylan')
+        acct1.deposit(100)
+        acct1.charge('diamonds', 200)
+        assert.equal(100, acct1.balance())
     })
 } ) 
